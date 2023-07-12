@@ -2,5 +2,5 @@
     <div class="p-2">
         Logo
     </div>
-    <x-layout.navigation :username="$username" />
+    <x-layout.navigation_auth :username="$username" />
 </div>

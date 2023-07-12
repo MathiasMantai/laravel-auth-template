@@ -46,6 +46,6 @@ class ProviderController extends Controller
             Auth::loginUsingId($id, true);
         }
 
-        return redirect('/');
+        return redirect('/dashboard');
     }
 }

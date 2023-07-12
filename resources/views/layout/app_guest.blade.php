@@ -7,7 +7,7 @@
     </head>
     <body>
         <div class="h-[100dvh] bg-slate-200 flex flex-col">
-            <x-layout.header :username="$username" />
+            <x-layout.header_guest />
             @yield('content')
             <x-layout.footer />
         </div>

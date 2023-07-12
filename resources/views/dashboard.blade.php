@@ -1,4 +1,4 @@
-@extends('layout.app', ['username' => $user->name])
+@extends('layout.app_auth', ['username' => $user->name])
 
 @section('content')
 <main class="flex grow">

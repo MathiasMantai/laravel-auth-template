@@ -1,5 +1,4 @@
 <ul class="flex flex-row gap-x-4">
-    <li class="hover:bg-sky-500 p-2"><a href="{{ url('/') }}">Startseite</a></li>
 @auth
     <li class="p-2">You are logged in </li>
     <li class="p-2">{{ $username }}</li>
