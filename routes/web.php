@@ -79,6 +79,10 @@ Route::get(
     'App\Http\Controllers\DashboardController@userData'
 )->name('profile')->middleware('auth');
 
+Route::post(
+    '/updateProfile',
+    'App\Http\Controllers\ProfileController@updateProfile'
+)->name('updateProfile')->middleware('auth');
 
 
 // Provider auth
