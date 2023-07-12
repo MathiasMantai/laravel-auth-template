@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
 
 
 /*
@@ -14,7 +16,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function() {return view('welcome');})->name('home');
+Route::get('/', function() {
+
+    if(Auth::check())
+    {
+        return redirect(route('dashboard'));
+    }
+
+    return view('welcome');
+})->name('home');
 
 Route::get('/home/{provider}', 
     'App\Http\Controllers\ProviderController@getProvider'
@@ -29,6 +39,11 @@ Route::get(
 /* Authentication START */
 
 Route::get('/register', function() {
+    if(Auth::check())
+    {
+        return redirect(route('dashboard'));
+    }
+
     return view('auth/register');
 })->name('register');
 
@@ -38,6 +53,12 @@ Route::post(
 );
 
 Route::get('/login', function() {
+
+    if(Auth::check())
+    {
+        return redirect(route('dashboard'));
+    }
+
     return view('auth/login');
 })->name('login');
 
