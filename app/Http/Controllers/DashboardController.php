@@ -9,9 +9,11 @@ use Illuminate\Support\Facades\View;
 
 class DashboardController extends Controller
 {
-    public function dashboardData(Request $request)
+    public function userData(Request $request)
     {
+        $callbackRoute = $request->getRequestUri();
+        // die($callbackRoute);
         $user = Auth::user();
-        return View::make('dashboard', ['user' => $user]);
+        return View::make($callbackRoute, ['user' => $user]);
     }
 }

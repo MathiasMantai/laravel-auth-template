@@ -31,8 +31,8 @@ Route::get('/home/{provider}',
 );
 
 Route::get(
-    '/dashboard', 
-    'App\Http\Controllers\DashboardController@dashboardData'
+    '/dashboard',
+    'App\Http\Controllers\DashboardController@userData'
 )->name('dashboard')->middleware('auth');
 
 
@@ -70,9 +70,18 @@ Route::post(
 Route::get(
     '/logout', 
     'App\Http\Controllers\LoginController@logout'
-)->name('logout');
+)->name('logout')->middleware('auth');
+
+//profile page
+
+Route::get(
+    '/profile',
+    'App\Http\Controllers\DashboardController@userData'
+)->name('profile')->middleware('auth');
 
 
+
+// Provider auth
 Route::get('/auth/redirect/{provider}', 'App\Http\Controllers\ProviderController@redirect')->name('authredirect');
 Route::get('/auth/callback/{provider}', 'App\Http\Controllers\ProviderController@callback');
 
