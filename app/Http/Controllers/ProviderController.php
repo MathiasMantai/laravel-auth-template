@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
 
@@ -24,7 +25,8 @@ class ProviderController extends Controller
     public function callback(Request $request, string $provider): RedirectResponse
     {
         $providerUser = Socialite::driver('google')->user();
-        if(!Auth::attempt([$providerUser->getName(),$providerUser->getEmail()]))
+        $id = DB::table('users')->where('email', $providerUser->getEmail())->value('id');
+        if(!$id)
         {
             $user = User::updateOrCreate([
                 'name' => $providerUser->getName(),
@@ -36,12 +38,14 @@ class ProviderController extends Controller
                 'provider_token_expires' => $providerUser->expiresIn
             ]);
 
-            Auth::login($user);
+            Auth::login($user, true);
+            Auth::ensureRememberTokenIsSet($user);
         }
         else
         {
-
+            Auth::loginUsingId($id, true);
         }
+
         return redirect('/');
     }
 }
