@@ -24,14 +24,14 @@ class ProviderController extends Controller
 
     public function callback(Request $request, string $provider): RedirectResponse
     {
-        $providerUser = Socialite::driver('google')->user();
+        $providerUser = Socialite::driver($provider)->user();
         $id = DB::table('users')->where('email', $providerUser->getEmail())->value('id');
         if(!$id)
         {
             $user = User::updateOrCreate([
-                'name' => $providerUser->getName(),
+                'name' => $providerUser->getNickname() != null ? $providerUser->getNickname() : $providerUser->getName(),
                 'email' => $providerUser->getEmail(),
-                'provider_type' => 'google',
+                'provider_type' => $provider,
                 'provider_id' => $providerUser->getId(),
                 'provider_token' => $providerUser->token,
                 'provider_refresh_token' => $providerUser->refreshToken,
@@ -39,7 +39,6 @@ class ProviderController extends Controller
             ]);
 
             Auth::login($user, true);
-            Auth::ensureRememberTokenIsSet($user);
         }
         else
         {
