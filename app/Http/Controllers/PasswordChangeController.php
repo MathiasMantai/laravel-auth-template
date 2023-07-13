@@ -11,17 +11,11 @@ class PasswordChangeController extends Controller
     public function updatePassword(Request $request)
     {
         $user = Auth::user();
+        $oldPassword = $request->oldPassword;
         $newPassword = $request->newPassword;
         $newPasswordRepeat = $request->newPasswordRepeat;
 
-        $credential = $request->only('password');
-        print trim($user->password) == "" ? "true" : "false";
-        print Auth::attempt($credential)  ? "true" : "false";
-        die;
-
-
-
-        if(Auth::attempt($credential) || trim($user->password) == "" && $newPassword == $newPasswordRepeat)
+        if(Hash::check($oldPassword, $user->password) || trim($user->password) == "" && $newPassword == $newPasswordRepeat)
         {
             $user->password = Hash::make($newPassword);
             $user->save();

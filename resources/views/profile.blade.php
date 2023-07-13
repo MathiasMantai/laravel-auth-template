@@ -62,7 +62,7 @@
                         Altes Passwort
                     </td>
                     <td class="py-4">
-                        <input type="text" name="password"  class="w-[100%] p-2 border-2 border-slate-300">
+                        <input type="text" name="oldPassword"  class="w-[100%] p-2 border-2 border-slate-300">
                     </td>
                 </tr>
                 <tr>
