@@ -14,9 +14,12 @@
         </div>
         <script>
             let successWindow = document.getElementById('successWindow')
-
+            let errorWindow = document.getElementById('errorWindow')
             setTimeout(() => {
-                successWindow.classList.toggle('hidden')
+                if(successWindow != undefined)
+                    successWindow.classList.toggle('hidden')
+                if(errorWindow != undefined)
+                    errorWindow.classList.toggle('hidden')
             }, 1000)
         </script>
     </body>

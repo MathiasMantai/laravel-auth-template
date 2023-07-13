@@ -73,46 +73,27 @@ Route::get(
 )->name('logout')->middleware('auth');
 
 //profile page
-
 Route::get(
     '/profile',
     'App\Http\Controllers\DashboardController@userData'
 )->name('profile')->middleware('auth');
 
+//update name or email on profile page
 Route::post(
     '/updateProfile',
     'App\Http\Controllers\ProfileController@updateProfile'
 )->name('updateProfile')->middleware('auth');
 
 
+//change pasword on profile page
+Route::post(
+    '/changePassword',
+    'App\Http\Controllers\PasswordChangeController@updatePassword'
+)->name('changePassword')->middleware('auth');
+
+
 // Provider auth
 Route::get('/auth/redirect/{provider}', 'App\Http\Controllers\ProviderController@redirect')->name('authredirect');
 Route::get('/auth/callback/{provider}', 'App\Http\Controllers\ProviderController@callback');
-
-// //google oauth
-// Route::get('/auth/google/redirect', function () {
-//     return Socialite::driver('google')->stateless()->redirect();
-// })->name('googleredirect');
- 
-// Route::get('/auth/google/callback', function () {
-//     $user = Socialite::driver('google')->stateless()->user();
-
-//     return view('welcome');
-// })->name('googleauth');
-
-// //github auth
-// Route::get('/auth/github/redirect', function () {
-//     return Socialite::driver('github')->stateless()->redirect();
-// })->name('githubredirect');
- 
-// Route::get('/auth/github/callback', function () {
-//     $user = Socialite::driver('github')->stateless()->user();
-
-//     $user = User::updateOrCreate([
-
-//     ]);
-
-//     Auth::login($user);
-// })->name('githubauth');
 
 /* Authentication END */

@@ -9,12 +9,12 @@
     {{ session('status') }}
 </div>
 @elseif (session('error'))
-<div class="alert alert-danger" role="alert">
+<div id="errorWindow" class="fixed top-2 right-2 bg-red-400 p-2 px-6 rounded-md shadow-md text-white" role="alert">
     {{ session('error') }}
 </div>
 @endif
 
-<div class="w-[100dvw] lg:w-[40dvw] bg-white rounded-md shadow-md flex flex-col items-center p-4">
+<div class="w-[100dvw] sm:w-[60dvw] lg:w-[40dvw] bg-white rounded-md shadow-md flex flex-col items-center p-4">
     <h1 class="text-center text-2xl p-4">Profil</h1>
 
     <x-divider>Profileinstellungen ändern</x-divider>
@@ -35,7 +35,7 @@
                         Passwort
                     </td>
                     <td class="py-4">
-                        <input type="text" name="password" value="{{ $user->password }}" class="w-[100%] p-2 border-2 border-slate-300">
+                        <input type="password" name="password" value="{{ trim($user->password) != '' ? '123456789' : ''  }}" class="w-[100%] p-2 border-2 border-slate-300" disabled>
                     </td>
                 </tr>
                 <tr>
@@ -54,7 +54,7 @@
 
     <x-divider>Passwort ändern</x-divider>
 
-    <form methdo="POST" action="{{ route('updateProfile')}}" class="flex flex-col items-center">
+    <form method="POST" action="{{ route('changePassword')}}" class="flex flex-col items-center">
         <table class="table-fixed w-full">
             <tbody class="p-4">
                 <tr class="">
@@ -62,7 +62,7 @@
                         Altes Passwort
                     </td>
                     <td class="py-4">
-                        <input type="text" name="name"  class="w-[100%] p-2 border-2 border-slate-300">
+                        <input type="text" name="password"  class="w-[100%] p-2 border-2 border-slate-300">
                     </td>
                 </tr>
                 <tr>
@@ -70,7 +70,7 @@
                         Neues Passwort
                     </td>
                     <td class="py-4">
-                        <input type="text" name="password" class="w-[100%] p-2 border-2 border-slate-300">
+                        <input type="text" name="newPassword" class="w-[100%] p-2 border-2 border-slate-300">
                     </td>
                 </tr>
                 <tr>
@@ -78,7 +78,7 @@
                         Neues Passwort bestätigen
                     </td>
                     <td class="py-4">
-                        <input type="text" name="email"  class="w-[100%] p-2 border-2 border-slate-300">
+                        <input type="text" name="newPasswordRepeat"  class="w-[100%] p-2 border-2 border-slate-300">
                     </td>
                 </tr>
             </tobdy>
