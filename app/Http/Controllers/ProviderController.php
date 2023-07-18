@@ -19,12 +19,30 @@ class ProviderController extends Controller
 
     public function redirect(Request $request, string $provider)
     {
-        return Socialite::driver($provider)->redirect();
+        $prev = url()->previous();
+        if ($prev == '/register')
+        {
+            return Socialite::driver($provider)->stateless()->redirect();
+        }
+        else 
+        {
+            return Socialite::driver($provider)->redirect();
+        }
     }
 
     public function callback(Request $request, string $provider): RedirectResponse
     {
-        $providerUser = Socialite::driver($provider)->user();
+        $prev = url()->previous();
+        $provideUser = null;
+        if($prev == '/register')
+        {
+            $providerUser = Socialite::driver($provider)->stateless()->user();
+        }
+        else 
+        {
+            $providerUser = Socialite::driver($provider)->user();
+        }
+
         $id = DB::table('users')->where('email', $providerUser->getEmail())->value('id');
         if(!$id)
         {
