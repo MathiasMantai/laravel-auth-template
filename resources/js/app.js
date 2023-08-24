@@ -1,6 +1,5 @@
 import './bootstrap';
 
-
 let successWindow = document.getElementById('successWindow')
 let errorWindow = document.getElementById('errorWindow')
 setTimeout(() => {
