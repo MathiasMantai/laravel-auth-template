@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\DefaultControlöer;
+use App\Http\Controllers\DefaultController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 

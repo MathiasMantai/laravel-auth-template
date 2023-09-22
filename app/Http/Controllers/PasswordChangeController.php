@@ -19,6 +19,7 @@ class PasswordChangeController extends Controller
         {
             $user->password = Hash::make($newPassword);
             $user->save();
+            
             return redirect('/profile')->with('status', 'Passwort erfolgreich geändert');
         }
         else
