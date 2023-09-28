@@ -8,8 +8,8 @@
     </head>
     <body class="">
         <div class="h-[100dvh] flex flex-col grow justify-center items-center">
-            <div class="p-2 text-lg rounded-md bg-white border-2 rounded-md shadow-md text-center">
-                This Site is currently unavailable
+            <div class="p-6 text-lg rounded-md bg-white border-2 rounded-md shadow-md text-center">
+                This Site is currently undergoing maintenance
             </div>
         </div>
     </body>
