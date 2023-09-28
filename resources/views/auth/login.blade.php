@@ -2,7 +2,7 @@
 
 @section('content')
 <main class="flex grow items-center justify-center">
-    <form method="POST" action="{{ url('authenticate') }}" class="flex flex-col gap-y-4 p-4 bg-white shadow-md rounded-md">
+    <form method="POST" action="{{ url('authenticate') }}" class="flex flex-col gap-y-4 p-6 w-[25dvw] bg-white shadow-md rounded-md">
         <div class="text-center text-xl">
             Login
         </div>

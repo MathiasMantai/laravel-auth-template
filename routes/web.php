@@ -96,5 +96,4 @@ Route::post(
 Route::get('/auth/redirect/{provider}', 'App\Http\Controllers\ProviderController@redirect')->name('authredirect');
 Route::get('/auth/callback/{provider}', 'App\Http\Controllers\ProviderController@callback');
 
-
 /* Authentication END */

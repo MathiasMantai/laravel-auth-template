@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\View;
 
 class DashboardController extends Controller
 {
+    public function fetchUserData(Request $request)
+    {
+        $input = $request->input();
+
+        
+    }
     public function userData(Request $request)
     {
         $callbackRoute = $request->getRequestUri();
